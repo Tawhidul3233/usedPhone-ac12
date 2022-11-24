@@ -1,9 +1,114 @@
 [
      {
           "category_name":"vivo",
-          "category_id": 1 ,
-          "category_img":"https://i.ibb.co/ph6Z5Hp/images.png",
+          "category_id": "1" ,
+          "product_name":"Vivo Y19",
+          "product_img":"https://i.ibb.co/vP0KzpT/image.png",
+          "location":"Patuakhali",
+          "orginal_price":"21000",
+          "resale_price":"12000",
+          "used_time":"1",
+          "condition_type":"Good",
+          "post_time":"9:30",
+          "seller_name":"Tawhidul islam",
+          "seller_verified": true ,
+          "mobile_number":"01792181....",
+          "features":"Bluetooth, Camera, Dual-Lens Camera, Dual SIM, Expandable Memory, Fingerprint Sensor, GPS, Physical keyboard, Motion Sensors, 3G, 4G, GSM, Touch screen",
+          "description":"ফোন কিনার আগে দয়া করে অবশ্যই বিস্তারিত পড়ে নিবেন===......Samsung কোম্পানী থেকে রিপলেস পাওয়া ফোন,,, , গত দশ মাস আগে  এই মডেলের ফোন আমি ক্রয় করি দশ মাসের মাথায় ফোন এর একটু সমস্যা হয় তা ঠিক করার জন্য কাস্টম কেয়ার এ জমা দেই,,,  কোনও না কোনও কারণে ফোনটা ঠিক হয় নাই,,, সে কারণে তারা আমাকে ইনটেক একটা ফোন রিপলেস করে... আর ফোনের পাকেট টা তারা নিজেদের কাছে রেখে দেয়,,,, ফোন বাবহার হইছে  5দিন ,,, ফোনের সাথে আপনাকে দেওয়া হবে  charger phon আর রিপলেস এর কাগজ ,........ ধন্যবাদ শেষ পর্যন্ত পড়ার জন্য 💖"
           
+
+          
+     },
+     {
+          "category_name":"vivo",
+          "category_id": "1" ,
+          "product_name":"Vivo V20",
+          "product_img":"https://i.ibb.co/Y7xfg7m/gsmarena-001.jpg",
+          "location":"Dhaka",
+          "orginal_price":"28000",
+          "resale_price":"19000",
+          "used_time":"0.6",
+          "condition_type":"Excelent",
+          "post_time":"10:30",
+          "seller_name":"Rakibul islam",
+          "seller_verified": false ,
+          "mobile_number":"013792181....",
+          "features":" Camera, Dual-Lens Camera, Dual SIM, Expandable Memory, Fingerprint Sensor, GPS, 3G, 4G, GSM, Touch screen",
+          "description":"touch display Akbar change kora hoice . r back camera ta halka Gola dust er Karone . clean korle tic hoe jave. r sovkisu perfect ase. 4/64 .. gaming prossaser Snapdragon.. only PHN. security dea hove. plz kaw text korvan na.. nete chaile direct call Devan.price fixed fixed 😊😊"
+          
+
+          
+     },
+     {
+          "category_name":"Realme",
+          "category_id": "2" ,
+          "product_name":"Realme C35",
+          "product_img":"https://i.ibb.co/qpwTJqC/realme-C35-Review-15.jpg",
+          "location":"Dhaka",
+          "orginal_price":"16000",
+          "resale_price":"6000",
+          "used_time":"2",
+          "condition_type":"Good",
+          "post_time":"10:30",
+          "seller_name":"Oliul islam",
+          "seller_verified": false ,
+          "mobile_number":"014992181....",
+          "features":" Camera, Dual-Lens Camera, Dual SIM, Expandable Memory, Fingerprint Sensor, GPS, 3G, 4G, GSM, Touch screen",
+          "description":"touch display Akbar change kora hoice . r back camera ta halka Gola dust er Karone . clean korle tic hoe jave. r sovkisu perfect ase. 4/64 .. gaming prossaser Snapdragon.. only PHN. security dea hove. plz kaw text korvan na.. nete chaile direct call Devan.price fixed fixed 😊😊"
+          
+     },
+     {
+          "category_name":"Realme",
+          "category_id": "2" ,
+          "product_name":"Realme 9",
+          "product_img":"https://i.ibb.co/1Tf2x0J/IMG-4932-1024x576.jpg",
+          "location":"Khulna",
+          "orginal_price":"27000",
+          "resale_price":"15000",
+          "used_time":"3",
+          "condition_type":"Good",
+          "post_time":"12:30",
+          "seller_name":"Rohidul islam",
+          "seller_verified": true ,
+          "mobile_number":"01599211....",
+          "features":" Camera, Dual-Lens Camera, Dual SIM, Expandable Memory, Fingerprint Sensor, GPS, 3G, 4G, GSM, Touch screen",
+          "description":"ফোন কিনার আগে দয়া করে অবশ্যই বিস্তারিত পড়ে নিবেন===......Samsung কোম্পানী থেকে রিপলেস পাওয়া ফোন,,, , গত দশ মাস আগে  এই মডেলের ফোন আমি ক্রয় করি দশ মাসের মাথায় ফোন এর একটু সমস্যা হয় তা ঠিক করার জন্য কাস্টম কেয়ার এ জমা দেই,,,  কোনও না কোনও কারণে ফোনটা ঠিক হয় নাই,,, সে কারণে তারা আমাকে ইনটেক একটা ফোন রিপলেস করে... আর ফোনের পাকেট টা তারা নিজেদের কাছে রেখে দেয়,,,, ফোন বাবহার হইছে  5দিন ,,, ফোনের সাথে আপনাকে দেওয়া হবে  charger phon আর রিপলেস এর কাগজ ,........ ধন্যবাদ শেষ পর্যন্ত পড়ার জন্য 💖"
+          
+     },
+     {
+          "category_name":"OPPO",
+          "category_id": "3" ,
+          "product_name":"Oppo F9",
+          "product_img":"https://i.ibb.co/gF8JvxC/OPPO-F9-unboxing-contents.webp",
+          "location":"Barisal",
+          "orginal_price":"27000",
+          "resale_price":"17000",
+          "used_time":"1,5",
+          "condition_type":"Good",
+          "post_time":"12:30",
+          "seller_name":"Shakib islam",
+          "seller_verified": true ,
+          "mobile_number":"01699211....",
+          "features":" Camera, Dual-Lens Camera, Dual SIM, Expandable Memory, Fingerprint Sensor, GPS, 3G, 4G, GSM, Touch screen",
+          "description":"ফোন কিনার আগে দয়া করে অবশ্যই বিস্তারিত পড়ে নিবেন===......Samsung কোম্পানী থেকে রিপলেস পাওয়া ফোন,,, , গত দশ মাস আগে  এই মডেলের ফোন আমি ক্রয় করি দশ মাসের মাথায় ফোন এর একটু সমস্যা হয় তা ঠিক করার জন্য কাস্টম কেয়ার এ জমা দেই,,,  কোনও না কোনও কারণে ফোনটা ঠিক হয় নাই,,, সে কারণে তারা আমাকে ইনটেক একটা ফোন রিপলেস করে... আর ফোনের পাকেট টা তারা নিজেদের কাছে রেখে দেয়,,,, ফোন বাবহার হইছে  5দিন ,,, ফোনের সাথে আপনাকে দেওয়া হবে  charger phon আর রিপলেস এর কাগজ ,........ ধন্যবাদ শেষ পর্যন্ত পড়ার জন্য 💖"
+          
+     },
+     {
+          "category_name":"OPPO",
+          "category_id": "3" ,
+          "product_name":"Oppo A16",
+          "product_img":"https://i.ibb.co/tKDXGLk/oppo-n3-unboxing-and-first-impressions-aa-1-of-31.jpg",
+          "location":"Dhaka",
+          "orginal_price":"14000",
+          "resale_price":"8000",
+          "used_time":"1",
+          "condition_type":"Excelent",
+          "post_time":"7:30",
+          "seller_name":"Tamim islam",
+          "seller_verified": false ,
+          "mobile_number":"01999211....",
+          "features":" Camera, Dual-Lens Camera, Dual SIM, Expandable Memory, Fingerprint Sensor, GPS, 3G, 4G, GSM, Touch screen",
+          "description":"touch display Akbar change kora hoice . r back camera ta halka Gola dust er Karone . clean korle tic hoe jave. r sovkisu perfect ase. 4/64 .. gaming prossaser Snapdragon.. only PHN. security dea hove. plz kaw text korvan na.. nete chaile direct call Devan.price fixed fixed 😊😊"
           
      }
 ]
