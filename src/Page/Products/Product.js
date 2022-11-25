@@ -24,12 +24,12 @@ const Product = ({ product }) => {
                     <div className="card-body ">
                          <div className='flex justify-between'>
                               <div>
-                                   <h2 className="">For sale by : {seller_name}</h2>
-                                   <p>Contact : {mobile_number}</p>
+                                   <h2 className="text-xl font-semibold">For sale by : {seller_name}</h2>
+                                   <p className='text-xl font-semibold'>Contact : {mobile_number}</p>
                               </div>
-                              <div>
-                                   <p> Orginal Price : {orginal_price}$</p>
-                                   <p> Resale Price : {resale_price}$</p>
+                              <div className='text-right'>
+                                   <p className="text-xl font-semibold"> Orginal Price : <span className="text-2xl text-green-500 font-semibold">{orginal_price}$</span></p>
+                                   <p className="text-xl font-semibold"> Resale Price : <span className="text-2xl text-green-500 font-semibold" >{resale_price}$</span></p>
                               </div>
                          </div>
                          <div>
