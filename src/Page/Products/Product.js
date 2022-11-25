@@ -1,8 +1,10 @@
 import React from 'react';
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Product = ({ product }) => {
-     const { product_img, product_name, post_time, location, seller_name, mobile_number, 
-          orginal_price, resale_price, used_time, condition_type , features} = product
+     const { product_img, product_name, post_time, location, seller_name, mobile_number,
+          orginal_price, resale_price, used_time, condition_type, features } = product
      console.log(product)
      return (
           <div>
@@ -13,7 +15,11 @@ const Product = ({ product }) => {
 
                     </div>
                     <div className="px-10 pt-10">
-                         <img style={{ height: '250px', width: '100%' }} src={product_img} alt="Shoes" className="rounded-xl" />
+                         <PhotoProvider>
+                              <PhotoView key={''} src={product_img}>
+                                   <img className="rounded-xl" style={{ height: '250px', width: '100%' }} src={product_img} alt="" />
+                              </PhotoView>
+                         </PhotoProvider>
                     </div>
                     <div className="card-body ">
                          <div className='flex justify-between'>
@@ -22,8 +28,8 @@ const Product = ({ product }) => {
                                    <p>Contact : {mobile_number}</p>
                               </div>
                               <div>
-                                  <p> Orginal Price : {orginal_price}$</p>
-                                  <p> Resale Price : {resale_price}$</p>
+                                   <p> Orginal Price : {orginal_price}$</p>
+                                   <p> Resale Price : {resale_price}$</p>
                               </div>
                          </div>
                          <div>
