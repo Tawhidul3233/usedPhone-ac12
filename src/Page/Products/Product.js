@@ -2,12 +2,17 @@ import React, { useContext } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { GoVerified } from "react-icons/go";
 
 const Product = ({ product }) => {
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
-          orginal_price, resale_price, used_time, condition_type, features } = product
+          orginal_price, resale_price, used_time, condition_type, features , seller_verified } = product
 
-          
+          const Verified = ()=>{
+               if(seller_verified === true){
+                    return <GoVerified className='inline-block text-blue-700'> </GoVerified>
+               }
+          }
      
      return (
           <div>
@@ -27,7 +32,7 @@ const Product = ({ product }) => {
                     <div className="card-body ">
                          <div className='flex justify-between'>
                               <div>
-                                   <h2 className="text-xl font-semibold">For sale by : {seller_name}</h2>
+                                   <h2 className="text-xl font-semibold">For sale by : {seller_name} {Verified()} </h2>
                                    <p className='text-xl font-semibold'>Contact : {mobile_number}</p>
                               </div>
                               <div className='text-right'>

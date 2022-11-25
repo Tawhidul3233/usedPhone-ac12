@@ -8,7 +8,71 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
 
+     const {lgoinUserWithEmail,
+          createUserWithGoogle,
+              user, loading,
+           createUserWithGithub} = useContext(AuthContext)
+
     
+    const googleProvider =new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
+    const navigate = useNavigate()
+    
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
+
+    
+    if(loading){
+         return <div className='text-center my-60'><button className="btn loading ">loading</button></div>
+    }
+
+    const fromSubmitHandler = (event)=>{
+         event.preventDefault();
+
+         const form = event.target;
+
+         const email = form.email.value;
+         const password = form.password.value;
+
+         lgoinUserWithEmail(email, password)
+         .then(result => {
+              const user = result.user;
+              toast.success('Login Successfully')
+              if(user?.uid){
+                   navigate(from, {replace:true})
+              }
+         })
+         .catch(error => {
+              console.error(error)
+              toast.error('Something wrong check you email and password')
+         });
+    }
+
+    const googleHandler = ()=>{
+         createUserWithGoogle(googleProvider)
+         .then(result =>{
+              const user = result.user;
+              toast.success('Login Successfully')
+              if(user?.uid){
+                   navigate(from, {replace:true})
+              }
+              
+         })
+         .catch(error => console.error(error))
+    }
+
+    const githubHandler = ()=>{
+         createUserWithGithub(githubProvider)
+         .then(result => {
+              const user = result.user;
+              toast.success('Login Successfully')
+              if(user?.uid){
+                   navigate(from, {replace:true})
+              }
+         })
+         .catch(error => console.error(error))
+    }
 
      return (
           <div>
