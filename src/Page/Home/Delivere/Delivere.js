@@ -6,7 +6,7 @@ const Delivere = () => {
                <div className="hero  rounded-lg  ">
                     <div className="hero-content flex-col lg:flex-row">
                          <div>
-                              <img alt='' src="https://i.ibb.co/cD7x6WS/dietary-removebg-preview.png" className="max-w-sm rounded-lg shadow-2xl" />
+                              <img alt='' src="https://i.ibb.co/cD7x6WS/dietary-removebg-preview.png" className=" rounded-lg shadow-2xl" />
                          </div>
                          <div className='text-center md:text-left'>
                               <h1 className="text-3xl font-bold">Get items delivered to you with
