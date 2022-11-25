@@ -6,14 +6,14 @@ import { GoVerified } from "react-icons/go";
 
 const Product = ({ product }) => {
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
-          orginal_price, resale_price, used_time, condition_type, features , seller_verified } = product
+          orginal_price, resale_price, used_time, condition_type, features, seller_verified } = product
 
-          const Verified = ()=>{
-               if(seller_verified === true){
-                    return <GoVerified className='inline-block text-blue-700'> </GoVerified>
-               }
+     const Verified = () => {
+          if (seller_verified === true) {
+               return <GoVerified className='inline-block text-blue-700'> </GoVerified>
           }
-     
+     }
+
      return (
           <div>
                <div className="card border-2 shadow-xl ">
@@ -41,12 +41,16 @@ const Product = ({ product }) => {
                               </div>
                          </div>
                          <div>
-                              <p> Used Time : {used_time} years</p>
-                              <p> Product condition : {condition_type}</p>
-                              <p>Features : {features}</p>
+                              <p> <span className=' font-semibold'>Used Time :</span> {used_time} years</p>
+                              <p> <span className=' font-semibold'>Product condition :</span> {condition_type}</p>
+                              <p> <span className=' font-semibold'>Features : </span>{features}</p>
                          </div>
-                         <div className="card-actions">
-                              <button className="btn bg-green-700">Book Now</button>
+                         <div className="card-actions my-5 flex items-center justify-between">
+                              <button className="btn bg-green-700 ">Book Now</button>
+                              <div className=''>
+                                   <button className="badge badge-outline mx-3">Advertised</button>
+                                   <button className="badge badge-outline">Report Porduct</button>
+                              </div>
                          </div>
                     </div>
                </div>
