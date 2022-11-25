@@ -1,11 +1,10 @@
-import { React, useState } from 'react';
+import { React, useContext, useState } from 'react';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const AddProduct = () => {
-     <div>
-          <input value={Date().slice(0, 33)} type="text" placeholder="Type here" className="input input-bordered w-full " />
-     </div>
 
+     const {user} = useContext(AuthContext)
 
      return (
           <div className='m-5'>
@@ -38,7 +37,7 @@ const AddProduct = () => {
 
                          <input className=' border-2 p-2' name='seller_verified' type="text" placeholder='Seller Verified' defaultValue={false} disabled />
 
-                         <input className=' border-2 p-2' name='email' type="text" placeholder='Email' required />
+                         <input className=' border-2 p-2' name='email' type="text" placeholder='Email' defaultValue={user?.email} required disabled />
 
                     </div>
                     <textarea className='border-2 p-4' name="description" id="" cols="30" rows="10" placeholder='Description'></textarea>

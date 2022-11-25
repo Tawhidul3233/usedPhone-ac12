@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Product = ({ product }) => {
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
           orginal_price, resale_price, used_time, condition_type, features } = product
+
+          
      
      return (
           <div>

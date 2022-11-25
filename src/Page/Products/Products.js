@@ -6,9 +6,9 @@ const Products = () => {
      const  products  = useLoaderData();
 
      return (
-          <div>
+          <div className='my-10'>
                <div>
-                    <h1 className='text-2xl m-5 font-semibold'> All Product </h1>
+                    <h1 className='text-2xl m-5 font-semibold'> All Products </h1>
                </div>
                <div className='grid md:grid-cols-1 lg:grid-cols-2 gap-4'>
                     {
