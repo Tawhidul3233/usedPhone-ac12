@@ -5,7 +5,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 const Product = ({ product }) => {
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
           orginal_price, resale_price, used_time, condition_type, features } = product
-     console.log(product)
+     
      return (
           <div>
                <div className="card border-2 shadow-xl ">
