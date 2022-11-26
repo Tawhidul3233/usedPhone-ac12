@@ -5,11 +5,12 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { stringify } from 'postcss';
 
 
 const Register = () => {
 
-     const { openAccountWithEmail, createUserWithGoogle, createUserWithGithub, loading } = useContext(AuthContext)
+     const { openAccountWithEmail, createUserWithGoogle, createUserWithGithub, loading, changeName } = useContext(AuthContext)
 
 
      const googleProvider = new GoogleAuthProvider();
@@ -30,33 +31,44 @@ const Register = () => {
           const name = form.name.value;
           const usertype = form.usertype.value;
 
-          console.log(usertype)
+          console.log(usertype, name)
 
           const newuser = {
-               name ,
+               name,
                email,
                usertype,
-               seller_verified : false
+               seller_verified: false
           }
+
 
 
           openAccountWithEmail(email, password)
                .then(result => {
-                    const user = result.user;
+                    const user = result.user
                     toast.success('Register Successfully')
                     navigate('/');
 
-                   fetch('http://localhost:5000/users',{
-                    method: 'POST',
-                    headers:{
-                         'content-type':'application/json'
-                    },
-                    body: JSON.stringify(newuser)
-                   })
-                   .then(res => res.json())
-                   .then(data => console.log(data))
-                   .catch(err => console.log(err))
-                   
+                    console.log(user)
+
+                    const username = {
+                         displayName: name
+                    }
+                    changeName(username)
+                         .then(() => { })
+                         .catch(error => console.log(error))
+
+
+                    fetch('http://localhost:5000/users', {
+                         method: 'POST',
+                         headers: {
+                              'content-type': 'application/json'
+                         },
+                         body: JSON.stringify(newuser)
+                    })
+                         .then(res => res.json())
+                         .then(data => console.log(data))
+                         .catch(err => console.log(err))
+
                })
                .catch(error => {
                     console.error(error)
@@ -71,24 +83,25 @@ const Register = () => {
                     const user = result.user;
                     toast.success('Login Successfully')
                     navigate('/');
-                    
+
                     console.log(user)
+
                     const newuser = {
                          name: user.displayName,
                          email: user.email,
                          usertype: 'buyer',
                     }
 
-                    fetch('http://localhost:5000/users',{
-                    method: 'POST',
-                    headers:{
-                         'content-type':'application/json'
-                    },
-                    body: JSON.stringify(newuser)
-                   })
-                   .then(res => res.json())
-                   .then(data => console.log(data))
-                   .catch(err => console.log(err))
+                    fetch('http://localhost:5000/users', {
+                         method: 'POST',
+                         headers: {
+                              'content-type': 'application/json'
+                         },
+                         body: JSON.stringify(newuser)
+                    })
+                         .then(res => res.json())
+                         .then(data => console.log(data))
+                         .catch(err => console.log(err))
 
                })
                .catch(error => console.error(error))

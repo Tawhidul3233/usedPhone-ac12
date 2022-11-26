@@ -10,7 +10,7 @@ const Login = () => {
 
      const {lgoinUserWithEmail,
           createUserWithGoogle,
-              user, loading,
+               loading,
            createUserWithGithub} = useContext(AuthContext)
 
     
@@ -18,7 +18,6 @@ const Login = () => {
     const githubProvider = new GithubAuthProvider();
 
     const navigate = useNavigate()
-    
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
@@ -31,7 +30,6 @@ const Login = () => {
          event.preventDefault();
 
          const form = event.target;
-
          const email = form.email.value;
          const password = form.password.value;
 
@@ -49,6 +47,7 @@ const Login = () => {
          });
     }
 
+
     const googleHandler = ()=>{
          createUserWithGoogle(googleProvider)
          .then(result =>{
@@ -61,6 +60,7 @@ const Login = () => {
          })
          .catch(error => console.error(error))
     }
+
 
     const githubHandler = ()=>{
          createUserWithGithub(githubProvider)
