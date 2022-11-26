@@ -38,6 +38,13 @@ export const router = createBrowserRouter([
                {
                     path:'/login',
                     element: <Login> </Login>
+               },
+               {
+                    path:'*',
+                    element: <div className="text-center ">
+                         <h1 className="text-3xl font-semibold my-5"> This page not found </h1>
+                         <img className="mx-auto" style={{width:'70%', height:'400px'}} src="https://i.ibb.co/fFC20JG/A-404-Page-Best-Practices-and-Design-Inspiration.jpg" alt="" />
+                    </div>
                }
           ]
      }

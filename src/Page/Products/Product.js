@@ -6,7 +6,9 @@ import { GoVerified } from "react-icons/go";
 
 const Product = ({ product }) => {
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
-          orginal_price, resale_price, used_time, condition_type, features, seller_verified } = product
+          orginal_price, resale_price, used_time, condition_type, features, seller_verified } = product;
+
+          const {user} = useContext(AuthContext)
 
      const Verified = () => {
           if (seller_verified === true) {
@@ -46,7 +48,57 @@ const Product = ({ product }) => {
                               <p> <span className=' font-semibold'>Features : </span>{features}</p>
                          </div>
                          <div className="card-actions my-5 flex items-center justify-between">
-                              <button className="btn bg-green-700 ">Book Now</button>
+                              <label htmlFor="my-modal-3" className="btn bg-green-700">Book Now</label>
+                              <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+
+
+                              <div className="modal">
+                                   <div className="modal-box relative">
+                                        <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                        <h3 className="text-lg font-bold">{product_name}</h3>
+                                        <form action="">
+                                             <div className="form-control">
+                                                  <label className="label">
+                                                       <span className="label-text">Name</span>
+                                                  </label>
+                                                  <input type="text" name='name' placeholder="name" className="input input-bordered" defaultValue={user?.displayName}  disabled />
+                                             </div>
+                                             <div className="form-control">
+                                                  <label className="label">
+                                                       <span className="label-text">Email</span>
+                                                  </label>
+                                                  <input type="text" name='email' placeholder="email" className="input input-bordered" defaultValue={user?.email}  disabled />
+                                             </div>
+                                             <div className="form-control">
+                                                  <label className="label">
+                                                       <span className="label-text">Item name</span>
+                                                  </label>
+                                                  <input type="text" name='email' placeholder="item name" className="input input-bordered" defaultValue={product_name} disabled  />
+                                             </div>
+                                             <div className="form-control">
+                                                  <label className="label">
+                                                       <span className="label-text">Price$</span>
+                                                  </label>
+                                                  <input type="text" name='email' placeholder="price$" className="input input-bordered" defaultValue={resale_price} disabled />
+                                             </div>
+                                             <div className="form-control">
+                                                  <label className="label">
+                                                       <span className="label-text">Location</span>
+                                                  </label>
+                                                  <input type="text" name='email' placeholder="Location" className="input input-bordered"  />
+                                             </div>
+                                             <div className="form-control">
+                                                  <label className="label">
+                                                       <span className="label-text">Phone number</span>
+                                                  </label>
+                                                  <input type="text" name='email' placeholder="phone number" className="input input-bordered"  />
+                                             </div>
+                                             <label  className="btn bg-green-700">Book Now</label>
+                                        </form>
+                                   </div>
+                              </div>
+
+
                               <div className=''>
                                    <button className="badge badge-outline mx-3">Advertised</button>
                                    <button className="badge badge-outline">Report Porduct</button>

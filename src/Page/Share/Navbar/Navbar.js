@@ -18,6 +18,7 @@ const Navbar = () => {
      const menubar = <>
           {<li><Link to='/'>Home</Link></li>}
           {<li><Link to='/blog'>Blog</Link></li>}
+          {<li><Link to='about'>About</Link></li>}
           {
                user?.uid ? <>
                     {<li><Link to='/addproduct'>Add Product</Link></li>}

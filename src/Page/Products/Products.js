@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 import Product from './Product';
 
 const Products = () => {
      const  products  = useLoaderData();
+     const {loading} = useContext(AuthContext)
+
+     if (loading) {
+          return <div className='text-center my-60'><button className="btn loading ">loading</button></div>
+     }
 
      return (
           <div className='my-10'>

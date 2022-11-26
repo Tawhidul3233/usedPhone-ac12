@@ -31,7 +31,7 @@ const AddProduct = () => {
 
                          <input className=' border-2 p-2' value={Date().slice(0, 33)} name='post_time' type="text" placeholder='Post Time' disabled />
 
-                         <input className=' border-2 p-2' name='seller_name' type="text" placeholder='Seller Name' />
+                         <input className=' border-2 p-2' name='seller_name' type="text" placeholder='Seller Name' defaultValue={user?.displayName} disabled />
 
                          <input className=' border-2 p-2' name='mobile_number' type="text" placeholder='Mobile Number' />
 

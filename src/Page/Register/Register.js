@@ -9,7 +9,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Register = () => {
 
-     const {openAccountWithEmail , createUserWithGoogle , createUserWithGithub , loading  } = useContext(AuthContext)
+     const { openAccountWithEmail, createUserWithGoogle, createUserWithGithub, loading } = useContext(AuthContext)
 
 
      const googleProvider = new GoogleAuthProvider();
@@ -17,58 +17,98 @@ const Register = () => {
      const navigate = useNavigate()
 
 
-     if(loading){
+     if (loading) {
           return <div className='text-center my-60'><button className="btn loading ">loading</button></div>
      }
 
-     
-     const fromSubmitHandler = (event)=>{
+
+     const fromSubmitHandler = (event) => {
           event.preventDefault();
           const form = event.target;
           const email = form.email.value;
           const password = form.password.value;
           const name = form.name.value;
+          const usertype = form.usertype.value;
 
-          console.log(email, password, name)
+          console.log(usertype)
+
+          const newuser = {
+               name ,
+               email,
+               usertype,
+               seller_verified : false
+          }
+
+
           openAccountWithEmail(email, password)
-          .then(result => {
-               const user = result.user;
-               toast.success('Register Successfully')
-               navigate('/');
-               
-          })
-          .catch(error => {
-               console.error(error)
-               toast.error('Something wrong check you email and password')
-          });
+               .then(result => {
+                    const user = result.user;
+                    toast.success('Register Successfully')
+                    navigate('/');
+
+                   fetch('http://localhost:5000/users',{
+                    method: 'POST',
+                    headers:{
+                         'content-type':'application/json'
+                    },
+                    body: JSON.stringify(newuser)
+                   })
+                   .then(res => res.json())
+                   .then(data => console.log(data))
+                   .catch(err => console.log(err))
+                   
+               })
+               .catch(error => {
+                    console.error(error)
+                    toast.error('Something wrong check you email and password')
+               });
 
      }
 
-     const googleHandler = ()=>{
+     const googleHandler = () => {
           createUserWithGoogle(googleProvider)
-          .then(result =>{
-               const user = result.user;
-               toast.success('Login Successfully')
-               navigate('/');
-          })
-          .catch(error => console.error(error))
+               .then(result => {
+                    const user = result.user;
+                    toast.success('Login Successfully')
+                    navigate('/');
+                    
+                    console.log(user)
+                    const newuser = {
+                         name: user.displayName,
+                         email: user.email,
+                         usertype: 'buyer',
+                    }
+
+                    fetch('http://localhost:5000/users',{
+                    method: 'POST',
+                    headers:{
+                         'content-type':'application/json'
+                    },
+                    body: JSON.stringify(newuser)
+                   })
+                   .then(res => res.json())
+                   .then(data => console.log(data))
+                   .catch(err => console.log(err))
+
+               })
+               .catch(error => console.error(error))
      }
 
-     const githubHandler = ()=>{
+     const githubHandler = () => {
           createUserWithGithub(githubProvider)
-          .then(result => {
-               const user = result.user;
-               toast.success('Login Successfully')
-               navigate('/');
-          })
-          .catch(error => console.error(error))
+               .then(result => {
+                    const user = result.user;
+                    toast.success('Login Successfully')
+                    navigate('/');
+               })
+               .catch(error => console.error(error))
      }
 
      return (
           <div>
                <div className="hero my-10">
                     <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row">
-                         <form  onSubmit={fromSubmitHandler} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                         <form onSubmit={fromSubmitHandler} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                               <div className="card-body">
                                    <h1 className="text-5xl font-bold">Register now!</h1>
 
@@ -78,7 +118,7 @@ const Register = () => {
                                         </label>
                                         <input type="text" name='name' placeholder="name" className="input input-bordered" />
                                    </div>
-                         
+
                                    <div className="form-control">
                                         <label className="label">
                                              <span className="label-text">Email</span>
@@ -94,6 +134,12 @@ const Register = () => {
 
                                         </label>
                                    </div>
+
+                                   <select name='usertype' className="select select-bordered w-full max-w-xs">
+                                        <option >buyer</option>
+                                        <option >seller</option>
+                                   </select>
+
                                    <div className="form-control mt-6">
                                         <button className="btn bg-green-700">Register</button>
                                    </div>
@@ -104,11 +150,11 @@ const Register = () => {
                          </form>
 
                          <div className="mx-auto">
-                              <button onClick={googleHandler}  className="flex  btn my-5 bg-green-500 rounded-md px-4 py-2 text-center">
+                              <button onClick={googleHandler} className="flex  btn my-5 bg-green-500 rounded-md px-4 py-2 text-center">
                                    <FaGoogle className='mt-1 mx-2'></FaGoogle>
                                    Continue with google
                               </button>
-                              <button  onClick={githubHandler} className="flex  btn bg-green-500 rounded-md px-4 py-2 text-center">
+                              <button onClick={githubHandler} className="flex  btn bg-green-500 rounded-md px-4 py-2 text-center">
                                    <FaGithub className='mt-1 mx-2'> </FaGithub>
                                    Continue with Github
                               </button>
