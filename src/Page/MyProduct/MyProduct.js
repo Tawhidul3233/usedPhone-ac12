@@ -1,21 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
+const MyProduct = () => {
 
-const MyOrder = () => {
-
-     const { user, loading } = useContext(AuthContext)
-
+     const {user, loading} = useContext(AuthContext)
      const [products, setProducts] = useState([])
 
-     useEffect(() => {
-          fetch(`http://localhost:5000/users?email=${user?.email}`)
-               .then(res => res.json())
-               .then(data => {
-                    setProducts(data)
-               })
-               .catch(err => console.log(err))
-     }, [user])
+     useEffect(()=>{
+          fetch(`http://localhost:5000/product?email=${user?.email}`)
+          .then(res => res.json())
+          .then(data => setProducts(data))
+          .catch(error => console.log(error))
+     },[user])
 
 
      const loadingIcon = () => {
@@ -24,9 +20,9 @@ const MyOrder = () => {
           }
      }
 
-
      return (
           <div>
+              <div>
                <div className="overflow-x-auto w-full">
                     <table className="table w-full">
 
@@ -34,8 +30,9 @@ const MyOrder = () => {
                               <tr>
                                    <th>No</th>
                                    <th>Name</th>
-                                   <th>Price$</th>
-                                   <th>Payment</th>
+                                   <th>Promote</th>
+                                   <th>Status</th>
+                                   <th>Delete</th>
                               </tr>
                          </thead>
                          <tbody>
@@ -55,14 +52,17 @@ const MyOrder = () => {
                                                             {product?.product_name}
                                                        </div>
                                                        <div className="text-sm opacity-50">
-                                                            {product?.email}
+                                                            {product?.resale_price}$
                                                        </div>
                                                   </div>
                                              </div>
                                         </td>
-                                        <td>{product?.resale_price}$</td>
+                                        <td> Advertise</td>
                                         <th>
-                                             <button className="btn btn-ghost btn-xs">Payment</button>
+                                             <button className="btn btn-ghost btn-xs">unsold</button>
+                                        </th>
+                                        <th>
+                                             <button className="btn btn-ghost btn-xs">Delete</button>
                                         </th>
                                    </tr>)
                               }
@@ -76,7 +76,8 @@ const MyOrder = () => {
                                    }
                               </>
           </div>
+          </div>
      );
 };
 
-export default MyOrder;
+export default MyProduct;

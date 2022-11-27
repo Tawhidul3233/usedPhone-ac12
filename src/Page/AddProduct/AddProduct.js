@@ -1,19 +1,77 @@
-import { React, useContext, useState } from 'react';
+import { React, useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const AddProduct = () => {
 
-     const {user} = useContext(AuthContext)
+     const { user } = useContext(AuthContext)
+     const navigate = useNavigate()
+
+     const addProductSubmit = (event) => {
+          event.preventDefault()
+          const form = event.target;
+          const product_name = form.product_name.value;
+          const category_id = form.category_id.value;
+          const orginal_price = form.orginal_price.value;
+          const resale_price = form.resale_price.value;
+          const used_time = form.used_time.value;
+          const condition_type = form.condition_type.value;
+          const product_img = form.product_img.value;
+          const features = form.features.value;
+          const location = form.location.value;
+          const post_time = form.post_time.value;
+          const seller_name = form.seller_name.value;
+          const mobile_number = form.mobile_number.value;
+          const seller_verified = form.seller_verified.value;
+          const email = form.email.value;
+          const description = form.description.value;
+
+          const newProduct = {
+               product_name,
+               category_id,
+               orginal_price,
+               resale_price,
+               used_time,
+               condition_type,
+               product_img,
+               features,
+               location,
+               post_time,
+               seller_name,
+               mobile_number,
+               seller_verified,
+               email,
+               description
+          }
+
+          fetch('http://localhost:5000/product', {
+               method: 'POST',
+               headers: {
+                    'content-type': 'application/json'
+               },
+               body: JSON.stringify(newProduct)
+          })
+          .then(res => res.json())
+          .then(data => {
+               toast.success('Product Successfully added')
+               navigate('/myproduct')
+          })
+
+          .catch(error => {
+               toast.error('Product not submit something wrong')
+               console.log(error)})
+     }
 
      return (
           <div className='m-5'>
                <h1 className='my-5 text-3xl font-semibold'> Add Your Product</h1>
-               <form  className='grid  gap-4' action="">
+               <form onSubmit={addProductSubmit} className='grid  gap-4' action="">
                     <div className='grid gap-4 md:grid-cols-2'>
-                         <input className=' border-2 p-2' name='product_name' type="text" placeholder='Product Name'  />
+                         <input className=' border-2 p-2' name='product_name' type="text" placeholder='Product Name' />
 
-                         <input className=' border-2 p-2' name='category_id' type="text" placeholder='Category id'  />
+                         <input className=' border-2 p-2' name='category_id' type="text" placeholder='Category id' />
 
                          <input className=' border-2 p-2' name='orginal_price' type="text" placeholder='Orginal Price$' />
 

@@ -5,6 +5,7 @@ import Blog from "../../Page/Blogs/Blog";
 import Home from "../../Page/Home/Home/Home";
 import Login from "../../Page/Login/Login";
 import MyOrder from "../../Page/MyOrder/MyOrder";
+import MyProduct from "../../Page/MyProduct/MyProduct";
 import Product from "../../Page/Products/Products";
 import Register from "../../Page/Register/Register";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
                {
                     path:'/myorder',
                     element:<MyOrder> </MyOrder>
+               },
+               {
+                    path:'/myproduct',
+                    element:<MyProduct> </MyProduct>
                },
 
 

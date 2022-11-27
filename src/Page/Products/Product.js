@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthContext } from '../../Contexts/AuthProvider';
@@ -7,9 +7,11 @@ import { GoVerified } from "react-icons/go";
 const Product = ({ product, setItemProduct }) => {
 
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
-          orginal_price, resale_price, used_time, condition_type, features, seller_verified } = product
+          orginal_price, resale_price, used_time, condition_type, features,seller_verified  } = product
 
-          const {user} = useContext(AuthContext)
+          const {user , loading} = useContext(AuthContext)
+
+
 
      const Verified = () => {
           if (seller_verified === true) {
@@ -17,9 +19,16 @@ const Product = ({ product, setItemProduct }) => {
           }
      }
 
+     const loadingIcon = () => {
+          if (loading) {
+               return <div className=' text-center my-5 '><button className="btn loading ">loading</button></div>
+          }
+     }
+
 
      return (
           <div>
+                { loadingIcon()}
                <div className="card border-2 shadow-xl ">
                     <div className='mx-5 mt-5'>
                          <h1 className='text-xl font-semibold'>{product_name}</h1>
