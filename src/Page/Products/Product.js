@@ -17,6 +17,7 @@ const Product = ({ product, setItemProduct }) => {
           }
      }
 
+
      return (
           <div>
                <div className="card border-2 shadow-xl ">

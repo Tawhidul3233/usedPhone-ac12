@@ -22,6 +22,7 @@ const Navbar = () => {
           {
                user?.uid ? <>
                     {<li><Link to='/addproduct'>Add Product</Link></li>}
+                    {<li><Link to='/myorder'>My Order</Link></li>}
                     {<li><Link onClick={logOutHandler} to=''>LogOut</Link></li>}
                </> :
                     <>

@@ -7,22 +7,23 @@ const Categories = () => {
      const [categories, setCategories] = useState([])
      const { loading } = useContext(AuthContext)
 
-
-     useEffect(() => {
-          fetch('http://localhost:5000/categories')
-               .then(res => res.json())
-               .then(data => setCategories(data))
-               .catch(error => console.log(error))
-     }, [])
-
      const loadingIcon = () => {
           if (loading) {
                return <div className='text-center my-5'><button className="btn loading ">loading</button></div>
           }
      }
 
+     
 
+     useEffect(() => {
+          fetch('http://localhost:5000/categories')
+               .then(res => res.json())
+               .then(data => {
+                    setCategories(data)})
+               .catch(error => console.log(error))
+     }, [])
 
+    
      return (
           <div className=''>
                <div>

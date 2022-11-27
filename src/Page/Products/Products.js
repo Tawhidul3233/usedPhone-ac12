@@ -30,9 +30,11 @@ const Products = () => {
                          ></Product>)
                     }
                </div>
+               {itemProduct &&
                <BookingModel
-               product={itemProduct}
-               > </BookingModel>
+               itemProduct={itemProduct}
+               setItemProduct={setItemProduct}
+               > </BookingModel>}
           </div>
      );
 };

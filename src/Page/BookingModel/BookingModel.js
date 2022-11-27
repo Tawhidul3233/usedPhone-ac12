@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider';
-import Products from '../Products/Products';
 
-const BookingModel = ({ product }) => {
-     const { product_name, resale_price } = product
+const BookingModel = ({ itemProduct, setItemProduct }) => {
 
-     const { user } = useContext(AuthContext)
 
-     const submitbookingmodal = (event)=>{
+     const { user, loading } = useContext(AuthContext)
+
+     const submitbookingmodal = (event) => {
           event.preventDefault()
           const form = event.target;
           const displayName = form.name.value;
@@ -18,33 +17,33 @@ const BookingModel = ({ product }) => {
           const location = form.location.value;
           const mobile_number = form.mobile_number.value;
 
-          const order ={
+          const order = {
                displayName,
                email,
                product_name,
                resale_price,
                location,
-               mobile_number
+               mobile_number,
+               product_img: itemProduct?.product_img
           }
 
-          console.log(order)
-
-          fetch('http://localhost:5000/orders',{
-               method:'POST',
-               headers:{
-                    'content-type':'application/json'
+          fetch('http://localhost:5000/orders', {
+               method: 'POST',
+               headers: {
+                    'content-type': 'application/json'
                },
                body: JSON.stringify(order)
           })
-          .then(res => res.json())
-          .then(data => {
-               toast.success('Order create successfully')
-               console.log(data)
-          })
-          .catch(error => {
-               console.log(error)
-               toast.error('Somthing wrong try again')
-          })
+               .then(res => res.json())
+               .then(data => {
+                    setItemProduct(null)
+                    toast.success('Order Booked successfully')
+                    
+               })
+               .catch(error => {
+                    console.log(error)
+                    toast.error('Somthing wrong try again')
+               })
 
      }
 
@@ -56,7 +55,7 @@ const BookingModel = ({ product }) => {
                <div className="modal">
                     <div className="modal-box relative">
                          <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                         <h3 className="text-lg font-bold">{product_name}</h3>
+                         <h3 className="text-lg font-bold">{itemProduct?.product_name}</h3>
                          <form onSubmit={submitbookingmodal} action="">
                               <div className="form-control">
                                    <label className="label">
@@ -74,13 +73,13 @@ const BookingModel = ({ product }) => {
                                    <label className="label">
                                         <span className="label-text">Item name</span>
                                    </label>
-                                   <input type="text" name='product_name' placeholder="item name" className="input input-bordered" defaultValue={product_name} disabled />
+                                   <input type="text" name='product_name' placeholder="item name" className="input input-bordered" defaultValue={itemProduct?.product_name} disabled />
                               </div>
                               <div className="form-control">
                                    <label className="label">
                                         <span className="label-text">Price$</span>
                                    </label>
-                                   <input type="text" name='resale_price' placeholder="price$" className="input input-bordered" defaultValue={resale_price} disabled />
+                                   <input type="text" name='resale_price' placeholder="price$" className="input input-bordered" defaultValue={itemProduct?.resale_price} disabled />
                               </div>
                               <div className="form-control">
                                    <label className="label">
@@ -94,8 +93,9 @@ const BookingModel = ({ product }) => {
                                    </label>
                                    <input type="text" name='mobile_number' placeholder="phone number" className="input input-bordered" />
                               </div>
-                              <div className='text-center'>
-                                   <button type='submit' className="btn bg-green-700 my-5 w-80 ">Book Now</button>
+                              <div className='text-center '>
+                                   <button href='#' type='submit' className="btn bg-green-700 my-5 w-80 "
+                                   >Book Now</button>
                               </div>
                          </form>
                     </div>

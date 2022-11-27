@@ -33,14 +33,6 @@ const Register = () => {
 
           console.log(usertype, name)
 
-          const newuser = {
-               name,
-               email,
-               usertype,
-               seller_verified: false
-          }
-
-
 
           openAccountWithEmail(email, password)
                .then(result => {
@@ -50,6 +42,7 @@ const Register = () => {
 
                     console.log(user)
 
+
                     const username = {
                          displayName: name
                     }
@@ -58,6 +51,12 @@ const Register = () => {
                          .catch(error => console.log(error))
 
 
+                    const newuser = {
+                         displayName: name,
+                         email,
+                         usertype,
+                         seller_verified: false
+                    }
                     fetch('http://localhost:5000/users', {
                          method: 'POST',
                          headers: {
@@ -113,6 +112,23 @@ const Register = () => {
                     const user = result.user;
                     toast.success('Login Successfully')
                     navigate('/');
+
+                    const newuser = {
+                         name: user.displayName,
+                         email: user.email,
+                         usertype: 'buyer',
+                    }
+
+                    fetch('http://localhost:5000/users', {
+                         method: 'POST',
+                         headers: {
+                              'content-type': 'application/json'
+                         },
+                         body: JSON.stringify(newuser)
+                    })
+                         .then(res => res.json())
+                         .then(data => console.log(data))
+                         .catch(err => console.log(err))
                })
                .catch(error => console.error(error))
      }
