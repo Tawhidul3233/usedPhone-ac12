@@ -12,7 +12,6 @@ const Product = ({ product, setItemProduct }) => {
           const {user , loading} = useContext(AuthContext)
 
 
-
      const Verified = () => {
           if (seller_verified === true) {
                return <GoVerified className='inline-block text-blue-700'> </GoVerified>

@@ -2,10 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 
-const MyOrder = () => {
+const Allseller = () => {
 
-     const { user, loading } = useContext(AuthContext)
+     const {user, loading} = useContext(AuthContext)
 
+     const [sellers , setSellers] = useState([])
+     console.log(sellers)
+     useEffect(()=>{
+          fetch('http://localhost:5000/allseller')
+          .then(res => res.json())
+          .then(data => setSellers(data))
+     },[])
+
+     
      const [products, setProducts] = useState([])
 
      useEffect(() => {
@@ -18,7 +27,6 @@ const MyOrder = () => {
      }, [user])
 
 
-
      const loadingIcon = () => {
           if (loading) {
                return <div className=' text-center my-5 '><button className="btn loading ">loading</button></div>
@@ -28,6 +36,7 @@ const MyOrder = () => {
 
      return (
           <div>
+               <div>
                <div className="overflow-x-auto w-full">
                     <table className="table w-full">
 
@@ -35,36 +44,34 @@ const MyOrder = () => {
                               <tr>
                                    <th>No</th>
                                    <th>Name</th>
-                                   <th>Price$</th>
-                                   <th>Payment</th>
+                                   <th>Product</th>
                                    <th>Remove</th>
                               </tr>
                          </thead>
                          <tbody>
                              
                               {
-                                   products.map((product, i) => <tr>
+                                   sellers.map((seller, i) => <tr>
                                         <td>{i + 1}</td>
                                         <td>
                                              <div className="flex items-center space-x-3">
-                                                  <div className="avatar">
-                                                       <div className="mask mask-squircle w-12 h-12">
-                                                            <img src={product?.product_img} alt="Avatar Tailwind CSS Component" />
-                                                       </div>
-                                                  </div>
                                                   <div>
                                                        <div className="font-bold">
-                                                            {product?.product_name}
+                                                            {seller?.name}
                                                        </div>
                                                        <div className="text-sm opacity-50">
-                                                            {product?.email}
+                                                            {seller?.email}
                                                        </div>
                                                   </div>
                                              </div>
                                         </td>
-                                        <td>{product?.resale_price}$</td>
+                                   
                                         <th>
-                                             <button className="btn btn-ghost btn-xs">Payment</button>
+                                             <button className="btn btn-ghost btn-xs">
+                                                  {
+                                                       products.length
+                                                  }
+                                             </button>
                                         </th>
                                         <th>
                                              <button className="btn btn-ghost btn-xs">Remove</button>
@@ -81,7 +88,8 @@ const MyOrder = () => {
                                    }
                               </>
           </div>
+          </div>
      );
 };
 
-export default MyOrder;
+export default Allseller;

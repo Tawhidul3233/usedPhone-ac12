@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast'
@@ -15,21 +15,46 @@ const Navbar = () => {
                .catch(error => console.log(error))
      }
 
+     const [sellerVerify, setSellerVerify] = useState()
+
+          useEffect(()=>{
+               fetch(` http://localhost:5000/user?email=${user?.email} `)
+               .then(res => res.json())
+               .then(data => setSellerVerify(data[0]?.usertype))
+          },[user])
+
      const menubar = <>
           {<li><Link to='/'>Home</Link></li>}
           {<li><Link to='/blog'>Blog</Link></li>}
           {<li><Link to='about'>About</Link></li>}
           {
-               user?.uid ? <>
+               sellerVerify === 'seller' &&  <>
                     {<li><Link to='/addproduct'>Add Product</Link></li>}
-                    {<li><Link to='/myorder'>My Order</Link></li>}
                     {<li><Link to='/myproduct'>My Product</Link></li>}
+                   
+               </> 
+          }
+          {
+               sellerVerify === 'buyer' && <>
+                    {<li><Link to='/myorder'>My Order</Link></li>}
+                    {<li><Link to='/mywhitlist'>My Whitlist</Link></li>}
+               </>
+          }
+          {
+                sellerVerify === 'admin' && <>
+                {<li><Link to='/allseller'>All seller</Link></li>}
+                {<li><Link to='/allbuyer'>All buyer</Link></li>}
+           </>
+          }
+          {
+               user?.uid ?  
+               <>
                     {<li><Link onClick={logOutHandler} to=''>LogOut</Link></li>}
-               </> :
-                    <>
-                         {<li><Link to='/register'>Register</Link></li>}
-                         {<li><Link to='/login'>Login</Link></li>}
-                    </>
+               </>
+               : <>
+               {<li><Link to='/register'>Register</Link></li>}
+               {<li><Link to='/login'>Login</Link></li>}
+          </>
           }
      </>
 

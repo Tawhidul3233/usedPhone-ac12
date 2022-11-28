@@ -9,6 +9,18 @@ const AddProduct = () => {
      const { user } = useContext(AuthContext)
      const navigate = useNavigate()
 
+
+     const [sellerVerify, setSellerVerify] = useState()
+
+          useEffect(()=>{
+               fetch(` http://localhost:5000/user?email=${user?.email} `)
+               .then(res => res.json())
+               .then(data => setSellerVerify(data[0]?.seller_verified))
+          },[user])
+
+         
+
+
      const addProductSubmit = (event) => {
           event.preventDefault()
           const form = event.target;
@@ -24,7 +36,7 @@ const AddProduct = () => {
           const post_time = form.post_time.value;
           const seller_name = form.seller_name.value;
           const mobile_number = form.mobile_number.value;
-          const seller_verified = form.seller_verified.value;
+          const seller_verified = form.seller_verified.value ;
           const email = form.email.value;
           const description = form.description.value;
 
@@ -41,7 +53,7 @@ const AddProduct = () => {
                post_time,
                seller_name,
                mobile_number,
-               seller_verified,
+               seller_verified : JSON.parse(seller_verified),
                email,
                description
           }
@@ -93,7 +105,7 @@ const AddProduct = () => {
 
                          <input className=' border-2 p-2' name='mobile_number' type="text" placeholder='Mobile Number' />
 
-                         <input className=' border-2 p-2' name='seller_verified' type="text" placeholder='Seller Verified' defaultValue={false} disabled />
+                         <input className=' border-2 p-2' name='seller_verified' type="text" placeholder='Seller Verified' defaultValue={sellerVerify} disabled />
 
                          <input className=' border-2 p-2' name='email' type="text" placeholder='Email' defaultValue={user?.email} required disabled />
 
