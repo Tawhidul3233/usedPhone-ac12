@@ -10,6 +10,7 @@ import MyOrder from "../../Page/MyOrder/MyOrder";
 import MyProduct from "../../Page/MyProduct/MyProduct";
 import Product from "../../Page/Products/Products";
 import Register from "../../Page/Register/Register";
+import Wishlist from "../../Page/Wishlist/Wishlist";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 
 export const router = createBrowserRouter([
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
                {
                     path:'/allseller',
                     element: <Allseller> </Allseller>
+               },
+               {
+                    path:'/wishlist',
+                    element: <Wishlist> </Wishlist>
                },
 
 

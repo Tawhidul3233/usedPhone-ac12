@@ -38,7 +38,7 @@ const MyProduct = () => {
                               <tbody>
 
                                    {
-                                        products.map((product, i) => <tr>
+                                        products.map((product, i) => <tr key={i}>
                                              <td>{i + 1}</td>
                                              <td>
                                                   <div className="flex items-center space-x-3">

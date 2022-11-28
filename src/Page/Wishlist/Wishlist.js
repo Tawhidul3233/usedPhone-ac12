@@ -1,29 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
-
-const MyOrder = () => {
+const Wishlist = () => {
 
      const { user, loading } = useContext(AuthContext)
 
-     const [products, setProducts] = useState([])
-
-     useEffect(() => {
-          fetch(`http://localhost:5000/order?email=${user?.email}`)
-               .then(res => res.json())
-               .then(data => {
-                    setProducts(data)
-               })
-               .catch(err => console.log(err))
-     }, [user])
-
-
+     const [wishlistItems, setWishlistItems] = useState([])
 
      const loadingIcon = () => {
           if (loading) {
                return <div className=' text-center my-5 '><button className="btn loading ">loading</button></div>
           }
      }
+
+     useEffect(() => {
+          fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+               .then(res => res.json())
+               .then(data => {
+                    setWishlistItems(data)
+               })
+               .catch(err => console.log(err))
+     }, [user])
 
 
      return (
@@ -34,16 +31,16 @@ const MyOrder = () => {
                          <thead>
                               <tr>
                                    <th>No</th>
-                                   <th>Name</th>
-                                   <th>Price$</th>
-                                   <th>Payment</th>
-                                   <th>Remove</th>
+                                   <th>Product</th>
+                                   <th>Price</th>
+                                   <th>Wishlist Purchase</th>
+                                   <th>Remove Wishlist </th>
                               </tr>
                          </thead>
                          <tbody>
-                             
+
                               {
-                                   products.map((product, i) => <tr key={i}>
+                                   wishlistItems.map((product, i) => <tr key={i}>
                                         <td>{i + 1}</td>
                                         <td>
                                              <div className="flex items-center space-x-3">
@@ -62,12 +59,16 @@ const MyOrder = () => {
                                                   </div>
                                              </div>
                                         </td>
-                                        <td>{product?.resale_price}$</td>
+                                        <td>
+                                             {
+                                                  product.resale_price
+                                             }$
+                                        </td>
                                         <th>
-                                             <button className="btn btn-ghost btn-xs">Payment</button>
+                                             <button className="btn btn-ghost btn-xs"> View Product</button>
                                         </th>
                                         <th>
-                                             <button className="btn btn-ghost btn-xs">Remove</button>
+                                             <button className="btn btn-ghost btn-xs"> Remove </button>
                                         </th>
                                    </tr>)
                               }
@@ -76,12 +77,12 @@ const MyOrder = () => {
                     </table>
                </div>
                < >
-                                   {
-                                        loadingIcon()
-                                   }
-                              </>
+                    {
+                         loadingIcon()
+                    }
+               </>
           </div>
      );
 };
 
-export default MyOrder;
+export default Wishlist;

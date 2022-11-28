@@ -34,7 +34,7 @@ const Categories = () => {
                }
                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {
-                         categories.map(category => <div className="card shadow ">
+                         categories.map(category => <div key={category._id} className="card shadow ">
                               <Link to={`/category/${category.category_id}`}><img className=' rounded-lg' style={{ width: '100%', height: '250px' }} src={category.category_img} alt="" /></Link>
                          </div>)
                     }

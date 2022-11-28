@@ -26,6 +26,7 @@ const BookingModel = ({ itemProduct, setItemProduct }) => {
                mobile_number,
                product_img: itemProduct?.product_img
           }
+          console.log(itemProduct?.product_img)
 
           fetch('http://localhost:5000/orders', {
                method: 'POST',

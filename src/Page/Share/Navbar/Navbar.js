@@ -5,8 +5,15 @@ import toast, { Toaster } from 'react-hot-toast'
 
 const Navbar = () => {
 
-     const { user, logOutUser } = useContext(AuthContext)
+     const { user, logOutUser, loading } = useContext(AuthContext)
 
+     const loadingIcon = () => {
+          if (loading) {
+               return <div className=' text-center my-5 '><button className="btn loading ">loading</button></div>
+          }
+     }
+
+     loadingIcon()
      const logOutHandler = () => {
           logOutUser()
                .then(result => {
@@ -23,11 +30,13 @@ const Navbar = () => {
                .then(data => setSellerVerify(data[0]?.usertype))
           },[user])
 
+          
      const menubar = <>
           {<li><Link to='/'>Home</Link></li>}
           {<li><Link to='/blog'>Blog</Link></li>}
           {<li><Link to='about'>About</Link></li>}
           {
+               
                sellerVerify === 'seller' &&  <>
                     {<li><Link to='/addproduct'>Add Product</Link></li>}
                     {<li><Link to='/myproduct'>My Product</Link></li>}
@@ -37,7 +46,7 @@ const Navbar = () => {
           {
                sellerVerify === 'buyer' && <>
                     {<li><Link to='/myorder'>My Order</Link></li>}
-                    {<li><Link to='/mywhitlist'>My Whitlist</Link></li>}
+                    {<li><Link to='/wishlist'>My Wishlist</Link></li>}
                </>
           }
           {

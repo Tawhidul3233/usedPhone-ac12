@@ -18,9 +18,7 @@ const Register = () => {
      const navigate = useNavigate()
 
 
-     if (loading) {
-          return <div className='text-center my-60'><button className="btn loading ">loading</button></div>
-     }
+     
 
 
      const fromSubmitHandler = (event) => {
@@ -31,17 +29,12 @@ const Register = () => {
           const name = form.name.value;
           const usertype = form.usertype.value;
 
-          console.log(usertype, name)
-
-
           openAccountWithEmail(email, password)
                .then(result => {
                     const user = result.user
                     toast.success('Register Successfully')
+                    
                     navigate('/');
-
-                    console.log(user)
-
 
                     const username = {
                          displayName: name
@@ -65,7 +58,9 @@ const Register = () => {
                          body: JSON.stringify(newuser)
                     })
                          .then(res => res.json())
-                         .then(data => console.log(data))
+                         .then(data => {
+
+                         })
                          .catch(err => console.log(err))
 
                })
@@ -82,11 +77,11 @@ const Register = () => {
                     const user = result.user;
                     toast.success('Login Successfully')
                     navigate('/');
-
+                    
                     console.log(user)
 
                     const newuser = {
-                         name: user.displayName,
+                         displayName: user.displayName,
                          email: user.email,
                          usertype: 'buyer',
                     }
@@ -112,9 +107,9 @@ const Register = () => {
                     const user = result.user;
                     toast.success('Login Successfully')
                     navigate('/');
-
+                    
                     const newuser = {
-                         name: user.displayName,
+                         displayName: user.displayName,
                          email: user.email,
                          usertype: 'buyer',
                     }
