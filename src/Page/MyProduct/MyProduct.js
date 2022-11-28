@@ -15,7 +15,7 @@ const MyProduct = () => {
      }
 
      useEffect(() => {
-          fetch(`http://localhost:5000/product?email=${user?.email}`)
+          fetch(`https://usedphone-server.vercel.app/product?email=${user?.email}`)
                .then(res => res.json())
                .then(data => setProducts(data))
                .catch(error => console.log(error))
@@ -23,7 +23,7 @@ const MyProduct = () => {
 
      const advertise = (product) => {
           
-          fetch('http://localhost:5000/advertised',{
+          fetch('https://usedphone-server.vercel.app/advertised',{
                method:'POST',
                headers:{
                     'content-type':'application/json'

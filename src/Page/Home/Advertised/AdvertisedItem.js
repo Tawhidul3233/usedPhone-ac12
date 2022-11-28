@@ -4,6 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { GoVerified } from "react-icons/go";
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AdvertisedItem = ( { setItemProduct, adItem } ) => {
 
@@ -28,7 +29,7 @@ const AdvertisedItem = ( { setItemProduct, adItem } ) => {
      const [usertype, setUsertype] = useState()
 
      useEffect(()=>{
-          fetch(` http://localhost:5000/user?email=${user?.email} `)
+          fetch(` https://usedphone-server.vercel.app/user?email=${user?.email} `)
           .then(res => res.json())
           .then(data => setUsertype(data[0]?.usertype))
      },[user])
@@ -46,7 +47,7 @@ const AdvertisedItem = ( { setItemProduct, adItem } ) => {
 
           }
           
-          fetch('http://localhost:5000/wishlist',{
+          fetch('https://usedphone-server.vercel.app/wishlist',{
                method:'POST',
                headers:{
                     'content-type':'application/json'
@@ -59,8 +60,6 @@ const AdvertisedItem = ( { setItemProduct, adItem } ) => {
           })
           .catch(err => console.log(err))
      }
-
-
 
 
 
@@ -97,10 +96,11 @@ const AdvertisedItem = ( { setItemProduct, adItem } ) => {
                               <p> <span className=' font-semibold'>Features : </span>{features}</p>
                          </div>
                          <div className="card-actions my-5 flex items-center justify-between">
-
+                         
                               <label htmlFor="booking-modal" className="btn bg-green-700"
-                                   onClick={() => setItemProduct(adItem)}
-                              >Purchase Now</label>
+                                   onClick={() => setItemProduct(adItem) }
+                              >Purchase Now
+                              </label>
 
                               <div className=''>
                                    <button

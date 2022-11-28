@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import userEvent from '@testing-library/user-event';
+import React, { useContext, useEffect, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 import BookingModel from '../../BookingModel/BookingModel';
 import AdvertisedItem from './AdvertisedItem';
 
 const Advertised = () => {
 
+     const {user} = useContext(AuthContext)
+     
      const [advertiseItem, setAdvertiseItem] = useState([])
      const [itemProduct, setItemProduct] = useState([])
 
      useEffect(() => {
-          fetch('http://localhost:5000/advertised')
+          fetch('https://usedphone-server.vercel.app/advertised')
                .then(res => res.json())
                .then(data => {
                     setAdvertiseItem(data)
@@ -16,7 +21,6 @@ const Advertised = () => {
                .catch(err => console.log(err))
      }, [])
 
-    
      if(advertiseItem.length)
      return (
           <div>
@@ -27,6 +31,7 @@ const Advertised = () => {
                     
                </div>
                <div className='grid lg:grid-cols-3 mb-20 gap-4'>
+                    
                     {
                          advertiseItem.map(adItem => <AdvertisedItem
                               adItem={adItem}
@@ -39,7 +44,7 @@ const Advertised = () => {
                     }
                </div>
                <div>
-                    {itemProduct &&
+                    { itemProduct &&
                          <BookingModel
                               itemProduct={itemProduct}
                               setItemProduct={setItemProduct}

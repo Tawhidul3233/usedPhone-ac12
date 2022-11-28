@@ -1,5 +1,16 @@
 # Getting Started with Create React App
 
+
+live site : https://usedphone-3adf2.web.app/
+
+1. This site build using react app.
+2. onpage webapplication using react router.
+3. for desing using tailwind laibary dasyUi.
+4. to make server using express js.
+5. using mongodb to store data.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const BookingModel = ({ itemProduct, setItemProduct }) => {
@@ -7,8 +8,10 @@ const BookingModel = ({ itemProduct, setItemProduct }) => {
 
      const { user, loading } = useContext(AuthContext)
 
+
      const submitbookingmodal = (event) => {
           event.preventDefault()
+
           const form = event.target;
           const displayName = form.name.value;
           const email = form.email.value;
@@ -26,9 +29,8 @@ const BookingModel = ({ itemProduct, setItemProduct }) => {
                mobile_number,
                product_img: itemProduct?.product_img
           }
-          console.log(itemProduct?.product_img)
 
-          fetch('http://localhost:5000/orders', {
+          fetch('https://usedphone-server.vercel.app/orders', {
                method: 'POST',
                headers: {
                     'content-type': 'application/json'
@@ -39,7 +41,7 @@ const BookingModel = ({ itemProduct, setItemProduct }) => {
                .then(data => {
                     setItemProduct(null)
                     toast.success('Order Booked successfully')
-                    
+
                })
                .catch(error => {
                     console.log(error)
@@ -47,6 +49,7 @@ const BookingModel = ({ itemProduct, setItemProduct }) => {
                })
 
      }
+
 
 
      return (

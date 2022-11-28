@@ -25,7 +25,7 @@ const Navbar = () => {
      const [sellerVerify, setSellerVerify] = useState()
 
           useEffect(()=>{
-               fetch(` http://localhost:5000/user?email=${user?.email} `)
+               fetch(` https://usedphone-server.vercel.app/user?email=${user?.email} `)
                .then(res => res.json())
                .then(data => setSellerVerify(data[0]?.usertype))
           },[user])

@@ -28,7 +28,7 @@ const Product = ({ product, setItemProduct }) => {
      const [usertype, setUsertype] = useState()
 
           useEffect(()=>{
-               fetch(` http://localhost:5000/user?email=${user?.email} `)
+               fetch(` https://usedphone-server.vercel.app/user?email=${user?.email} `)
                .then(res => res.json())
                .then(data => setUsertype(data[0]?.usertype))
           },[user])
@@ -46,7 +46,7 @@ const Product = ({ product, setItemProduct }) => {
 
           }
           
-          fetch('http://localhost:5000/wishlist',{
+          fetch('https://usedphone-server.vercel.app/wishlist',{
                method:'POST',
                headers:{
                     'content-type':'application/json'

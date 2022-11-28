@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
                     path:'/category/:id',
                     element: <PrivateRouter> <Product> </Product> </PrivateRouter> ,
                     loader: ({params})=>{
-                         return fetch(`http://localhost:5000/category/${params.id}`)
+                         return fetch(`https://usedphone-server.vercel.app/category/${params.id}`)
                     }
                },
                {
