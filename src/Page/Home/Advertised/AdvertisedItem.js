@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { AuthContext } from '../../Contexts/AuthProvider';
 import { GoVerified } from "react-icons/go";
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
-const Product = ({ product, setItemProduct }) => {
+const AdvertisedItem = ( { setItemProduct, adItem } ) => {
 
      const { product_img, product_name, post_time, location, seller_name, mobile_number,
-          orginal_price, resale_price, used_time, condition_type, features, seller_verified } = product
+          orginal_price, resale_price, used_time, condition_type, features, seller_verified } = adItem
 
      const { user, loading } = useContext(AuthContext)
 
@@ -27,22 +27,22 @@ const Product = ({ product, setItemProduct }) => {
 
      const [usertype, setUsertype] = useState()
 
-          useEffect(()=>{
-               fetch(` http://localhost:5000/user?email=${user?.email} `)
-               .then(res => res.json())
-               .then(data => setUsertype(data[0]?.usertype))
-          },[user])
+     useEffect(()=>{
+          fetch(` http://localhost:5000/user?email=${user?.email} `)
+          .then(res => res.json())
+          .then(data => setUsertype(data[0]?.usertype))
+     },[user])
 
 
-        
+   
      const wishlistItems = ()=>{
           if(usertype === 'seller') 
           return toast.error('seller cannot add wishlist')
           const wishproduct ={
                email: user?.email,
-               product_name: product.product_name,
-               product_img: product.product_img,
-               resale_price: product.resale_price
+               product_name: adItem.product_name,
+               product_img: adItem.product_img,
+               resale_price: adItem.resale_price
 
           }
           
@@ -59,6 +59,9 @@ const Product = ({ product, setItemProduct }) => {
           })
           .catch(err => console.log(err))
      }
+
+
+
 
 
      return (
@@ -96,12 +99,12 @@ const Product = ({ product, setItemProduct }) => {
                          <div className="card-actions my-5 flex items-center justify-between">
 
                               <label htmlFor="booking-modal" className="btn bg-green-700"
-                                   onClick={() => setItemProduct(product)}
+                                   onClick={() => setItemProduct(adItem)}
                               >Purchase Now</label>
 
                               <div className=''>
                                    <button
-                                    onClick={()=>wishlistItems(product) }  className="badge badge-outline p-4">
+                                    onClick={()=>wishlistItems(adItem) }  className="badge badge-outline p-4">
                                         Wishlist
                                    </button>
                               </div>
@@ -112,4 +115,4 @@ const Product = ({ product, setItemProduct }) => {
      );
 };
 
-export default Product;
+export default AdvertisedItem;

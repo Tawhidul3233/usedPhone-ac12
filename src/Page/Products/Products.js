@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import BookingModel from '../BookingModel/BookingModel';
+import AdvertisedItem from '../Home/Advertised/AdvertisedItem';
 import Wishlist from '../Wishlist/Wishlist';
 import Product from './Product';
 
@@ -40,7 +41,7 @@ const Products = () => {
                               setItemProduct={setItemProduct}
                          > </BookingModel>}
                </div>
-
+               
           </div>
      );
 };

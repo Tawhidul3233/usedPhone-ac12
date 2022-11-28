@@ -1,10 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const MyProduct = () => {
 
      const { user, loading } = useContext(AuthContext)
      const [products, setProducts] = useState([])
+
+
+     const loadingIcon = () => {
+          if (loading) {
+               return <div className=' text-center my-5 '><button className="btn loading ">loading</button></div>
+          }
+     }
 
      useEffect(() => {
           fetch(`http://localhost:5000/product?email=${user?.email}`)
@@ -13,12 +21,22 @@ const MyProduct = () => {
                .catch(error => console.log(error))
      }, [user])
 
-
-     const loadingIcon = () => {
-          if (loading) {
-               return <div className=' text-center my-5 '><button className="btn loading ">loading</button></div>
-          }
+     const advertise = (product) => {
+          
+          fetch('http://localhost:5000/advertised',{
+               method:'POST',
+               headers:{
+                    'content-type':'application/json'
+               },
+               body: JSON.stringify(product)
+          })
+          .then(res => res.json())
+          .then (data => {
+               toast.success('Product Promoted Successfully')
+          })
+          .catch(err => console.log(err))
      }
+
 
      return (
           <div>
@@ -57,8 +75,11 @@ const MyProduct = () => {
                                                        </div>
                                                   </div>
                                              </td>
-                                             <td> 
-                                                  <button className="btn btn-ghost btn-xs">Advertise</button>
+                                             <td>
+                                                  <button
+                                                       onClick={() => advertise(product)}
+                                                       className="btn btn-ghost btn-xs">Advertise
+                                                  </button>
                                              </td>
                                              <th>
                                                   <button className="btn btn-ghost btn-xs">unsold</button>
